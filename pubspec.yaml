@@ -1,0 +1,33 @@
+name: call_video
+description: A sample Flutter library
+repository: https://github.com/flutter/packages/tree/main/packages/path_provider/path_provider
+issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+path_provider%22
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=2.5.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  json_annotation: ^4.8.0
+  permission_handler: ^10.4.3
+  agora_rtc_engine: ^6.2.1
+  stomp_dart_client: ^0.4.4
+  dio: ^5.3.1
+  path_provider: ^2.0.15
+  device_info_plus: ^9.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.6.1
+  build_runner: ^2.3.3
+
+
+flutter:
+  uses-material-design: true
+
