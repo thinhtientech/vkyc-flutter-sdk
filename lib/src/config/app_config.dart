@@ -22,27 +22,24 @@ class ConfigSocket {
 
     final sessionKey = ConfigAgora.chanelId;
     final socketId = stompClient?.config.url.split('websocket-agent/')[1].split('/')[1] ?? '';
-    print('---------socket: connected! $socketId');
 
     stompClient?.subscribe(
       destination: '/user/$sessionKey/notify',
       callback: (frame) {
-        print('---------socket: sessionKey/notify');
-        print(frame.body);
         if (frame.body?.contains(SocketCode.LEGAL_PAPERS_PASSED) == true) {
-          print('---------socket: legal papers passed116!');
+
         }
         if (frame.body?.contains(SocketCode.END_CALL) == true) {
-          print('---------socket: end call!');
+
           stopSocket();
         }
         if (frame.body?.contains(SocketCode.CALL_EXPIRED) == true) {
-          print('---------socket: call expired!');
+
           stopSocket();
           VideoCallImpl().leaveSession();
         }
         if (frame.body?.contains(SocketCode.CALL_TIMEOUT) == true) {
-          print('---------socket: call timeout!');
+
           stopSocket();
         }
       },
@@ -50,33 +47,29 @@ class ConfigSocket {
     stompClient?.subscribe(
       destination: '/user/$socketId/notify',
       callback: (frame) {
-        print('---------socket: socketId/notify');
-        print(frame.body);
         if (frame.body?.contains(SocketCode.CALL_TIMEOUT) == true) {
-          print('---------socket: call timeout!');
+
         }
       },
     );
     stompClient?.subscribe(
       destination: '/user/$socketId/health',
       callback: (frame) {
-        print(frame.body);
+
       },
     );
     stompClient?.subscribe(
       destination: '/app/live',
       callback: (frame) {
-        print(frame.body);
+
       },
     );
   }
 
   void stopSocket() {
-    print('socket: disconnecting...');
     if (stompClient?.isActive == true) {
       stompClient?.deactivate();
     }
-    print('socket: disconnected!');
   }
 }
 

@@ -33,6 +33,12 @@ the [AndroidManifest.xml](android/src/main/AndroidManifest.xml) file.
 </manifest>
 ```
 
+Change the minimum Android sdk version to 19 (or higher) in your `android/app/build.gradle` file.
+
+```groovy
+minSdkVersion 19
+```
+
 #### iOS
 
 Open the `Info.plist` and add:

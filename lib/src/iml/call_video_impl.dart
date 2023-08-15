@@ -154,7 +154,6 @@ class VideoCallImpl implements CallVideoController {
       savePath,
       onReceiveProgress: (rcv, total) {
         progress = ((rcv / total) * 100).toStringAsFixed(0);
-        print(progress);
 
         if (progress == '100') {
           // _isDownloaded = true;
@@ -213,8 +212,8 @@ class VideoCallImpl implements CallVideoController {
         heartbeatIncoming: const Duration(milliseconds: 5000),
         heartbeatOutgoing: const Duration(milliseconds: 5000),
         reconnectDelay: const Duration(milliseconds: 5000),
-        beforeConnect: () async => print('---------connecting...'),
-        onWebSocketError: (dynamic error) => print('SocketError: ${error.toString()}'),
+        beforeConnect: () async {},
+        onWebSocketError: (dynamic error) {},
         stompConnectHeaders: stompConnectHeaders,
       ),
     );
@@ -228,19 +227,19 @@ class VideoCallImpl implements CallVideoController {
     Map<String, dynamic> deviceData = {"os": "", "browser": "", "device": "", "deviceId": ""};
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
-      deviceData['os'] = 'Android ' + Platform.operatingSystemVersion;
+      deviceData['os'] = 'Android ${Platform.operatingSystemVersion}';
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
       deviceData['device'] = androidInfo.model;
       deviceData['deviceId'] = androidInfo.id;
     } else if (Platform.isIOS) {
-      deviceData['os'] = 'iOS ' + Platform.operatingSystemVersion;
+      deviceData['os'] = 'iOS ${Platform.operatingSystemVersion}';
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       deviceData['device'] = iosInfo.model;
       deviceData['deviceId'] = iosInfo.identifierForVendor;
     }
 
     /// Hash Code appointmentId
-    final appointmentId = "6bebdd2a-4a23-419d-8049-f0216ea2157f";
+    const appointmentId = "6bebdd2a-4a23-419d-8049-f0216ea2157f";
 
     Map<String,dynamic> data = {
       "appointmentId": appointmentId,
@@ -254,7 +253,9 @@ class VideoCallImpl implements CallVideoController {
       ConfigAgora.token = agoraInfo.code;
       ConfigAgora.chanelId = agoraInfo.sessionId;
       ConfigAgora.uid = int.tryParse(agoraInfo.subId!);
-    } else return;
+    } else {
+      return;
+    }
   }
 
   Future<String> _getFilePath(String uri) async {

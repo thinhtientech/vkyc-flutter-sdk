@@ -1,8 +1,8 @@
 name: call_video
-description: A sample Flutter library
-repository: https://github.com/flutter/packages/tree/main/packages/path_provider/path_provider
-issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+path_provider%22
-version: 1.0.0+1
+description: A Flutter library with video calls
+repository: https://github.com/thinhtientech/vkyc-flutter-sdk/blob/main/lib/call_video.dart
+issue_tracker: https://github.com/thinhtientech/vkyc-flutter-sdk/issues
+version: 1.0.0
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -24,6 +24,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: any
   json_serializable: ^6.6.1
   build_runner: ^2.3.3
 

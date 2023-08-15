@@ -14,7 +14,6 @@ class _MyHomePageState extends State<MyHomePage> {
   late CallVideoController callVideoController;
   bool _localUserJoined = false;
   bool _remoteUserJoined = false;
-  bool _muted = false;
 
   // Build UI
   @override
@@ -94,7 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         onConnectionStateChanged: (ConnectionType type) {
-          print("objectvvv $type");
           if(type == ConnectionType.failed || type == ConnectionType.disconnected){
             setState(() {
               _remoteUserJoined = false;
