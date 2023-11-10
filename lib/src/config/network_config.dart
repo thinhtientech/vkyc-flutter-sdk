@@ -1,7 +1,7 @@
 class NetWorkConfig {
-  static String initCall = '/vekyc/mobile-app/init-call';
+  static String initCall = '/meeting/init';
 
-  static String hook = '/vekyc/hook';
-  static String closeVideo = '/vekyc/close-video';
+  static String hook = '/hook';
+  static String closeVideo = '/close-video';
   // static String getContracts = '/vekyc/app/contracts';
 }

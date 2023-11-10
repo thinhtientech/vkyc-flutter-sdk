@@ -23,7 +23,7 @@ abstract class CallVideoController {
   ///
   /// Returns
   /// When the method call succeeds, there is no return value; when fails, the Exception exception is thrown; and you need to catch the exception and handle it accordingly.
-  Future<void> initialize();
+  Future<void> initialize({required String phoneNumber});
 
   /// Adds event handlers
   ///

@@ -15,6 +15,8 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _localUserJoined = false;
   bool _remoteUserJoined = false;
 
+  String phoneNumber = "0779265201";
+
   // Build UI
   @override
   Widget build(BuildContext context) {
@@ -44,8 +46,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: _localUserJoined
-                          ? null : callVideoController.initialize,
+                      onPressed: () {
+                        _localUserJoined
+                            ? null : callVideoController.initialize(phoneNumber: phoneNumber);
+                      },
                       child: const Text("Join"),
                     ),
                   ),
@@ -74,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> initVideoCall() async {
     callVideoController = createVideoCall();
 
-    await callVideoController.initialize();
+    await callVideoController.initialize(phoneNumber: phoneNumber);
 
     callVideoController.join(
         onJoinCallSuccess: (bool isJoinCall) {

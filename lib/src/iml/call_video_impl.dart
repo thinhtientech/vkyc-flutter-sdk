@@ -22,9 +22,9 @@ class VideoCallImpl implements CallVideoController {
   bool _isActive = false;
 
   @override
-  Future<void> initialize() async {
+  Future<void> initialize({required String phoneNumber}) async {
     await [Permission.microphone, Permission.camera].request();
-    await _initCall();
+    await _initCall(phoneNumber: phoneNumber);
 
     ConfigAgora.engine = createAgoraRtcEngine();
 
@@ -221,7 +221,7 @@ class VideoCallImpl implements CallVideoController {
     ConfigSocket.stompClient?.activate();
   }
 
-  Future<void> _initCall() async {
+  Future<void> _initCall({required String phoneNumber}) async {
 
     /// Get Device Info
     Map<String, dynamic> deviceData = {"os": "", "browser": "", "device": "", "deviceId": ""};
@@ -238,11 +238,8 @@ class VideoCallImpl implements CallVideoController {
       deviceData['deviceId'] = iosInfo.identifierForVendor;
     }
 
-    /// Hash Code appointmentId
-    const appointmentId = "6bebdd2a-4a23-419d-8049-f0216ea2157f";
-
     Map<String,dynamic> data = {
-      "appointmentId": appointmentId,
+      "phone_number": phoneNumber,
       "deviceInfo": deviceData
     };
 
@@ -254,7 +251,7 @@ class VideoCallImpl implements CallVideoController {
       ConfigAgora.chanelId = agoraInfo.sessionId;
       ConfigAgora.uid = int.tryParse(agoraInfo.subId!);
     } else {
-      return;
+      throw Exception(res.message);
     }
   }
 

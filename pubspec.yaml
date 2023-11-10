@@ -2,7 +2,7 @@ name: call_video
 description: A Flutter library with video calls
 repository: https://github.com/thinhtientech/vkyc-flutter-sdk/blob/main/lib/call_video.dart
 issue_tracker: https://github.com/thinhtientech/vkyc-flutter-sdk/issues
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
