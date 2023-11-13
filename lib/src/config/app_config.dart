@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
-import 'package:call_video/src/iml/call_video_impl.dart';
+import 'package:call_video/src/impl/call_video_impl.dart';
 import 'package:stomp_dart_client/stomp.dart';
+import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
 class ConfigAgora {
@@ -17,6 +20,45 @@ class ConfigSocket {
   static StompClient? stompClient;
 
   static const baseUrl = "https://test-usocket.mobifi.vn/websocket-agent";
+
+  void initSocket() {
+    if (ConfigSocket.stompClient?.isActive == true) {
+      return;
+    }
+
+    final Map<String, String> stompConnectHeaders = {
+      'Access-Control-Allow-Origin': '*',
+      'deviceInfo': json.encode(
+        {
+          'os': 'os',
+          'browser': 'browser',
+          'device': 'device',
+        },
+      ),
+    };
+
+    ConfigSocket.stompClient = StompClient(
+      config: StompConfig.SockJS(
+        url: ConfigSocket.baseUrl,
+        onConnect: onConnect,
+        connectionTimeout: const Duration(milliseconds: 30000),
+        heartbeatIncoming: const Duration(milliseconds: 5000),
+        heartbeatOutgoing: const Duration(milliseconds: 5000),
+        reconnectDelay: const Duration(milliseconds: 5000),
+        beforeConnect: () async {},
+        onWebSocketError: (dynamic error) {},
+        stompConnectHeaders: stompConnectHeaders,
+      ),
+    );
+
+    ConfigSocket.stompClient?.activate();
+  }
+
+  void stopSocket() {
+    if (stompClient?.isActive == true) {
+      stompClient?.deactivate();
+    }
+  }
 
   void onConnect(StompFrame frame) {
 
@@ -64,12 +106,6 @@ class ConfigSocket {
 
       },
     );
-  }
-
-  void stopSocket() {
-    if (stompClient?.isActive == true) {
-      stompClient?.deactivate();
-    }
   }
 }
 

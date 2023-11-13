@@ -1,0 +1,11 @@
+framework module NFCReader {
+  umbrella header "NFCReader.h"
+
+  export *
+  module * { export * }
+}
+
+module NFCReader.Swift {
+  header "NFCReader-Swift.h"
+  requires objc
+}

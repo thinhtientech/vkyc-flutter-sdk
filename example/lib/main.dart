@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             children: [
               // Container for the local video
-            if(_localUserJoined) Container(
+              if(_localUserJoined) Container(
                 height: 240,
                 decoration: BoxDecoration(border: Border.all()),
                 child: const Center(child: LocalVideoView()),

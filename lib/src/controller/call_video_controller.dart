@@ -1,7 +1,7 @@
 import 'package:call_video/src/config/connection_state.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../iml/call_video_impl.dart';
+import '../impl/call_video_impl.dart';
 
 /// Creates one CallVideo object.
 ///
@@ -52,6 +52,8 @@ abstract class CallVideoController {
   /// Returns
   /// When the method call succeeds, there is no return value; when fails, the Exception exception is thrown; and you need to catch the exception and handle it accordingly. < 0: Failure.
   void leaveSession();
+
+  void checkKyc({required String id,required String dob, required String doe,required Function(String) onError});
 
   /// Release the resources used by your app
   ///
