@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-* Get some basic and advanced examples from the [example](example/lib/examples) folder.
+* Get some basic and advanced examples from the [example](example/lib) folder.
 
 ### Privacy Permission
 
@@ -18,6 +18,7 @@ the [AndroidManifest.xml](android/src/main/AndroidManifest.xml) file.
 <manifest>
   ...
   <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
   <uses-permission android:name="android.permission.CAMERA" />
@@ -33,10 +34,10 @@ the [AndroidManifest.xml](android/src/main/AndroidManifest.xml) file.
 </manifest>
 ```
 
-Change the minimum Android sdk version to 19 (or higher) in your `android/app/build.gradle` file.
+Change the minimum Android sdk version to 26 (or higher) in your `android/app/build.gradle` file.
 
 ```groovy
-minSdkVersion 19
+minSdkVersion 26
 ```
 
 #### iOS
@@ -45,6 +46,17 @@ Open the `Info.plist` and add:
 
 - `Privacy - Microphone Usage Description`，and add some description into the `Value` column.
 - `Privacy - Camera Usage Description`, and add some description into the `Value` column.
+- `Privacy - NFCReaderUsageDescription`, and add some description into the `Value` column.
+
+- Add [com.apple.developer.nfc.readersession.iso7816.select-identifiers](https://developer.apple.com/documentation/bundleresources/information_property_list/select-identifiers) and value key:
+
+```xml
+    <array>
+    <string>A0000002471001</string>
+    <string>A0000002472001</string>
+    <string>00000000000000</string>
+    </array>
+```
 
 ## How to contribute
 

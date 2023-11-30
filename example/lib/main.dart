@@ -15,7 +15,8 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _localUserJoined = false;
   bool _remoteUserJoined = false;
 
-  String phoneNumber = "0779265201";
+  /// TODO Fill phone number
+  String phoneNumber = "*****";
 
   // Build UI
   @override

@@ -2,7 +2,7 @@ name: call_video
 description: A Flutter library with video calls
 repository: https://github.com/thinhtientech/vkyc-flutter-sdk/blob/main/lib/call_video.dart
 issue_tracker: https://github.com/thinhtientech/vkyc-flutter-sdk/issues
-version: 1.0.1
+version: 1.0.3
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -20,6 +20,7 @@ dependencies:
   dio: ^5.3.1
   path_provider: ^2.0.15
   device_info_plus: ^9.0.3
+  rxdart: ^0.27.7
 
 dev_dependencies:
   flutter_test:
@@ -30,5 +31,11 @@ dev_dependencies:
 
 
 flutter:
-  uses-material-design: true
+  plugin:
+    platforms:
+      android:
+        package: com.example.call_video
+        pluginClass: CallVideoPlugin
+      ios:
+        pluginClass: CallVideoPlugin
 
